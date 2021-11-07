@@ -9,7 +9,7 @@ public class InitialGridMaker : MonoBehaviour
     private int _heightAndWidth = 15;
     private float _offset = 1.1f;
     private List<GameObject> _platforms = new List<GameObject>();
-    void Start()
+    private void Start()
     {
         _gridHolder = this.transform;
 
