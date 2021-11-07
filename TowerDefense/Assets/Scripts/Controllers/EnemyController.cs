@@ -6,6 +6,13 @@ using NaughtyAttributes;
 
 public class EnemyController : MonoBehaviour
 {
+    [BoxGroup("Enemy Properties")]
+    [SerializeField]
+    private float _speed;
+
+    private Transform _target;
+    private int _pointIndex;
+
     private void Start()
     {
         SubscribeToActions();
@@ -18,5 +25,10 @@ public class EnemyController : MonoBehaviour
     private void SubscribeToActions()
     {
 
+    }
+
+    public void SetProperties()
+    {
+        _pointIndex = 0;
     }
 }
