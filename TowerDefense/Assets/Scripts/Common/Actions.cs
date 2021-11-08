@@ -9,8 +9,10 @@ public static class Actions
     public static Action QuitGameAction;
     public static Action EndGameAction;
     public static Action<int> SetTurretAction;
-    public static Action<int> ImpactAction;
-    public static Action<int> EnemyDestroyedAction;
+    public static Action<float> ImpactAction;
+    public static Action<int, EnemyController> EnemyDestroyedAction;
     public static Action<int> UpdateScore;
     public static Action<int> UpdateGold;
+    public static Action IncreaseEnemiesAttributes;
+    public static Action<EnemyController> EnemySpawnedAction;
 }

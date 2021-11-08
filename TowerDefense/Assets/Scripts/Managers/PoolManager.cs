@@ -157,22 +157,31 @@ public class PoolManager : MonoBehaviour
         return tr.GetComponent<ParticleSystem>();
     }
 
-    public Transform GetItem()
+    public Transform GetEnemy_1()
     {
-        Transform tr = GetObjectFromDictionary<Transform>("ItemElement");
+        Transform tr = GetObjectFromDictionary<Transform>("Enemy_1");
         if (!tr)
             return null;
 
         return tr;
     }
 
-    public GameObject GetElement()
+    public Transform GetEnemy_2()
     {
-        RectTransform tr = GetObjectFromDictionary<RectTransform>("Element");
+        Transform tr = GetObjectFromDictionary<Transform>("Enemy_2");
         if (!tr)
             return null;
 
-        return tr.gameObject;
+        return tr;
+    }
+
+    public Transform GetBullet()
+    {
+        Transform tr = GetObjectFromDictionary<Transform>("Bullet");
+        if (!tr)
+            return null;
+
+        return tr;
     }
     #endregion
 

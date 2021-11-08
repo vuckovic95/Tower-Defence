@@ -24,14 +24,14 @@ public class DataManager : MonoBehaviour
         Actions.EndGameAction += CheckIsHighScore;
     }
 
-    private void IncreaseScore(int scoreToEncrease)
+    private void IncreaseScore(int scoreToEncrease, EnemyController instigator)
     {
         _score += scoreToEncrease;
 
         Actions.UpdateScore?.Invoke(_score);
     }
 
-    private void IncreaseGold(int goldToIncrease)
+    private void IncreaseGold(int goldToIncrease, EnemyController instigator)
     {
         _gold += goldToIncrease;
 

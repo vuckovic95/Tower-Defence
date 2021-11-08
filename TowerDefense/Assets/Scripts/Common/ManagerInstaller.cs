@@ -17,19 +17,11 @@ public class ManagerInstaller : MonoInstaller
 
     [BoxGroup("Installers")]
     [SerializeField]
-    private GameObject _dialogService;
+    private GameObject _uiManager;
 
     [BoxGroup("Installers")]
     [SerializeField]
-    private GameObject _timeManager;
-
-    [BoxGroup("Installers")]
-    [SerializeField]
-    private GameObject _sceneManager;
-
-    [BoxGroup("Installers")]
-    [SerializeField]
-    private GameObject _bonusManager;
+    private GameObject _enemySpawnManager;
 
     [BoxGroup("Installers")]
     [SerializeField]
@@ -41,14 +33,10 @@ public class ManagerInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        //Container.Bind<GameManager>().FromComponentsOn(_gameManager).AsSingle();
-        //Container.Bind<DialogService>().FromComponentsOn(_dialogService).AsSingle();
-        //Container.Bind<TimeManager>().FromComponentsOn(_timeManager).AsSingle();
-        //Container.Bind<SceneSwitcher>().FromComponentsOn(_sceneManager).AsSingle();
-        //Container.Bind<BonusManager>().FromComponentsOn(_bonusManager).AsSingle();
-        //Container.Bind<DataManager>().FromComponentsOn(_dataManager).AsSingle();
-        //Container.Bind<PoolManager>().FromComponentsOn(_poolManager).AsSingle();
-
-        //Container.Bind<KeyHandler>().AsSingle();
+        Container.Bind<GameManager>().FromComponentsOn(_gameManager).AsSingle();
+        Container.Bind<DataManager>().FromComponentsOn(_dataManager).AsSingle();
+        Container.Bind<PoolManager>().FromComponentsOn(_poolManager).AsSingle();
+        Container.Bind<UIManager>().FromComponentsOn(_uiManager).AsSingle();
+        Container.Bind<EnemySpawnManager>().FromComponentsOn(_enemySpawnManager).AsSingle();
     }
 }
