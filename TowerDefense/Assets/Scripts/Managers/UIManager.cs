@@ -34,9 +34,6 @@ public class UIManager : MonoBehaviour
     [BoxGroup("Buttons")]
     [SerializeField]
     private Button _toMenuBtn;
-    [BoxGroup("Buttons")]
-    [SerializeField]
-    private Button _newTurretBtn;
 
 
     private List<GameObject> _uiPanels;

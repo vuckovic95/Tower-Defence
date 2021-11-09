@@ -183,6 +183,33 @@ public class PoolManager : MonoBehaviour
 
         return tr;
     }
+
+    public Transform GetSmallTurret()
+    {
+        Transform tr = GetObjectFromDictionary<Transform>("SmallTurret");
+        if (!tr)
+            return null;
+
+        return tr;
+    }
+
+    public Transform GetMediumTurret()
+    {
+        Transform tr = GetObjectFromDictionary<Transform>("MediumTurret");
+        if (!tr)
+            return null;
+
+        return tr;
+    }
+
+    public Transform GetBigTurret()
+    {
+        Transform tr = GetObjectFromDictionary<Transform>("BigTurret");
+        if (!tr)
+            return null;
+
+        return tr;
+    }
     #endregion
 
     #region Getters And Setters

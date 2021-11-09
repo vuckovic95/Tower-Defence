@@ -6,4 +6,6 @@ public static class States
 {
     public enum GameState { Menu, Play, End };
     public static GameState GameStateReference;
+
+    public enum TurretType { Small, Medium, Big };
 }
