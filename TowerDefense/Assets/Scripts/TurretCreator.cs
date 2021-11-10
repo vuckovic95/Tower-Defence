@@ -85,40 +85,55 @@ public class TurretCreator : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
                 break;
         }
 
-        _currentTurret.gameObject.SetActive(true);
+        if (_currentTurret.HasUsed)
+            GetTurret(type);
+        else
+            _currentTurret.gameObject.SetActive(true);
     }
 
     private void OnDragTrue()
     {
-        SetTurretPosition(_hitedCell.position);
-        _currentTurret.ChangeColorAndAlphaWhenDragging(true);
+        SetTurretPosition(_hitedCell);
+
+        if (!_gridManager.GridDictionary[_hitedCell.gameObject])
+            _currentTurret.ChangeColorAndAlphaWhenDragging(true);
+        else
+            _currentTurret.ChangeColorAndAlphaWhenDragging(false);
     }
 
     private void OnDragFalse()
     {
-        if (_currentTurret == null) return;
-        SetTurretPosition(_raycastHit.point);
-        //_currentTurret.transform.position = _raycastHit.point;
+        if (_currentTurret == null || _raycastHit.transform == null) return;
+
+        _currentTurret.transform.position = _raycastHit.point;
         _currentTurret.ChangeColorAndAlphaWhenDragging(false);
     }
 
     private void OnEndDragTrue()
     {
-        _turrets.Add(_currentTurret.gameObject);
-
-        SetTurretPosition(_hitedCell.position);
+        if (!_gridManager.GridDictionary[_hitedCell.gameObject])
+        {
+            _turrets.Add(_currentTurret.gameObject);
+            SetTurretPosition(_hitedCell);
+            _currentTurret.HasUsed = true;
+            _gridManager.GridDictionary[_hitedCell.gameObject] = true;
+        }
+        else
+        {
+            _currentTurret.gameObject.SetActive(false);
+        }
     }
 
-    private void SetTurretPosition(Vector3 transform)
+    private void SetTurretPosition(Transform transform)
     {
         switch (_turretType)
         {
             case States.TurretType.Small:
             case States.TurretType.Medium:
-                _currentTurret.SetTurretPosition(new Vector3(transform.x, transform.y + SMALL_MEDIUM_TURRET_Y_OFFSET, transform.z));
+                _currentTurret.SetTurretPosition(new Vector3(transform.position.x, transform.position.y + SMALL_MEDIUM_TURRET_Y_OFFSET, transform.position.z));
                 break;
             case States.TurretType.Big:
-                _currentTurret.SetTurretPosition(new Vector3(transform.x, transform.y + BIG_TURRET_Y_OFFSET, transform.z));
+                _currentTurret.SetTurretPosition(new Vector3(transform.position.x, transform.position.y + BIG_TURRET_Y_OFFSET, transform.position.z));
                 break;
         }
     }

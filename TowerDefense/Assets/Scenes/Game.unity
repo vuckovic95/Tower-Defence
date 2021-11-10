@@ -876,6 +876,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dome: {fileID: 632802357}
   _cannon: {fileID: 507331573}
+  _turretMaterial: {fileID: 2100000, guid: a687e086a2e1f974ea85fc28833f88d2, type: 2}
+  _turretMaterialDragTrue: {fileID: 2100000, guid: 6171b6f5383843647b8bb6d14c35d8a4, type: 2}
+  _turretMaterialDragFalse: {fileID: 2100000, guid: 2697a741bcadb6b449335180aa03524f, type: 2}
 --- !u!114 &95574121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2875,6 +2878,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dome: {fileID: 1888896448}
   _cannon: {fileID: 3548490}
+  _turretMaterial: {fileID: 2100000, guid: a687e086a2e1f974ea85fc28833f88d2, type: 2}
+  _turretMaterialDragTrue: {fileID: 2100000, guid: 6171b6f5383843647b8bb6d14c35d8a4, type: 2}
+  _turretMaterialDragFalse: {fileID: 2100000, guid: 2697a741bcadb6b449335180aa03524f, type: 2}
 --- !u!114 &681005160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4398,6 +4404,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dome: {fileID: 1580815858}
   _cannon: {fileID: 472529420}
+  _turretMaterial: {fileID: 2100000, guid: a687e086a2e1f974ea85fc28833f88d2, type: 2}
+  _turretMaterialDragTrue: {fileID: 2100000, guid: 6171b6f5383843647b8bb6d14c35d8a4, type: 2}
+  _turretMaterialDragFalse: {fileID: 2100000, guid: 2697a741bcadb6b449335180aa03524f, type: 2}
 --- !u!114 &1003556410
 MonoBehaviour:
   m_ObjectHideFlags: 0
