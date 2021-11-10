@@ -41,7 +41,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        if (this.gameObject.activeSelf)
+        if (this.gameObject.activeSelf && States.GameStateReference is States.GameState.Play)
         {
             _direction = _target.position - _transform.position;
             _transform.Translate(_direction.normalized * _speed * Time.deltaTime, Space.World);

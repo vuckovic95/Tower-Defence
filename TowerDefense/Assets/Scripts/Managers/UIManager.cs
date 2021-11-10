@@ -35,17 +35,18 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Button _toMenuBtn;
 
-
-    private List<GameObject> _uiPanels;
+    private List<Transform> _uiPanels;
 
     private void Start()
     {
         PopulatePanels();
         SubscribeToActions();
+        SwitchPanel("Menu");
     }
 
     private void SubscribeToActions()
     {
+        Actions.StartGameAction += ResetData;
         Actions.UpdateScore += UpdateScore;
         Actions.UpdateGold += UpdateGold;
         Actions.EndGameAction += () => SwitchPanel("End");
@@ -75,17 +76,19 @@ public class UIManager : MonoBehaviour
 
     private void PopulatePanels()
     {
-        foreach (GameObject panel in this.transform)
+        _uiPanels = new List<Transform>
         {
-            _uiPanels.Add(panel);
-        }
+            _menuPanel.transform,
+            _playPanel.transform,
+            _endPanel.transform
+        };
     }
 
     private void TurnOffAllPanels()
     {
-        foreach (GameObject panel in _uiPanels)
+        foreach (Transform panel in _uiPanels)
         {
-            panel.SetActive(false);
+            panel.gameObject.SetActive(false);
         }
     }
 
@@ -102,10 +105,18 @@ public class UIManager : MonoBehaviour
     private void PlayGameClicked()
     {
         SwitchPanel("Play");
+        Actions.StartGameAction?.Invoke();
     }
 
     private void ToMenuClicked()
     {
         SwitchPanel("Menu");
+        Actions.ToMenuAction?.Invoke();
+    }
+
+    private void ResetData()
+    {
+        UpdateScore(0);
+        UpdateGold(0);
     }
 }

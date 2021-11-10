@@ -8,6 +8,7 @@ public static class Actions
     public static Action StartGameAction;
     public static Action QuitGameAction;
     public static Action EndGameAction;
+    public static Action ToMenuAction;
     public static Action<int> SetTurretAction;
     public static Action<float> ImpactAction;
     public static Action<int, EnemyController> EnemyDestroyedAction;

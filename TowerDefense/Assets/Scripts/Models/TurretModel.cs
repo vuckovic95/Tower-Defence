@@ -5,6 +5,6 @@ using UnityEngine;
 public class TurretModel : MonoBehaviour
 {
     public int Damage;
-    public int FireRange;
+    public float FireRange;
     public int DistanceRange;
 }

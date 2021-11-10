@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
 
     private void SubscribeToActions()
     {
-
+        Actions.StartGameAction += StartGame;
+        Actions.EndGameAction += EndGame;
+        Actions.ToMenuAction += ToMenu;
     }
 
     private void SwitchGameState(string state)

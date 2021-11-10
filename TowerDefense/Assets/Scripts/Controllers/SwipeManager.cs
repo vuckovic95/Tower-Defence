@@ -37,7 +37,13 @@ public class SwipeManager : MonoBehaviour
 
     private void SubscribeToActions()
     {
+        Actions.ToMenuAction += ResetData;
+        Actions.StartGameAction += ResetData;
+    }
 
+    private void ResetData()
+    {
+        _turret.rotation = Quaternion.Euler(Vector3.zero);
     }
 
     public bool GetButton(string buttonName)

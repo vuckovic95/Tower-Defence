@@ -37,7 +37,6 @@ public class EnemySpawnManager : MonoBehaviour
     private void Start()
     {
         SubscribeToActions();
-        Actions.StartGameAction.Invoke();
     }
 
     private void SubscribeToActions()

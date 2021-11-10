@@ -13,10 +13,16 @@ public class TurretCreator : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     PoolManager _poolManager;
     [Inject]
     GridManager _gridManager;
+    [Inject]
+    DataManager _dataManager;
 
     [BoxGroup("Turret Type")]
     [SerializeField]
     private States.TurretType _turretType;
+
+    [BoxGroup("Price")]
+    [SerializeField]
+    private int _price;
 
     private List<GameObject> _turrets = new List<GameObject>();
     private TurretController _currentTurret;
@@ -35,19 +41,27 @@ public class TurretCreator : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     private void SubscribeToActions()
     {
         Actions.StartGameAction += ResetData;
+        Actions.ToMenuAction += ResetData;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        GetTurret(_turretType);
+        if (_dataManager.GetGold >= _price)
+            GetTurret(_turretType);
+        else
+            _currentTurret = null;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (_currentTurret == null) return;
+
         CheckHit(OnDragTrue, OnDragFalse);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (_currentTurret == null) return;
+
         CheckHit(OnEndDragTrue, OnEndDragFalse);
     }
 
@@ -117,11 +131,18 @@ public class TurretCreator : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
             SetTurretPosition(_hitedCell);
             _currentTurret.HasUsed = true;
             _gridManager.GridDictionary[_hitedCell.gameObject] = true;
+
+            Actions.SetTurretAction?.Invoke(_price);
         }
         else
         {
             _currentTurret.gameObject.SetActive(false);
         }
+    }
+
+    private void OnEndDragFalse()
+    {
+        _currentTurret.gameObject.SetActive(false);
     }
 
     private void SetTurretPosition(Transform transform)
@@ -138,13 +159,13 @@ public class TurretCreator : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
         }
     }
 
-    private void OnEndDragFalse()
-    {
-        _currentTurret.gameObject.SetActive(false);
-    }
-
     private void ResetData()
     {
+        foreach (GameObject turret in _turrets)
+        {
+            turret.SetActive(false);
+        }
+
         _currentTurret = null;
         _turrets.Clear();
     }

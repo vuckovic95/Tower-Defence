@@ -20,8 +20,8 @@ public class DataManager : MonoBehaviour
         Actions.StartGameAction += ResetGold;
         Actions.EnemyDestroyedAction += IncreaseScore;
         Actions.EnemyDestroyedAction += IncreaseGold;
-        Actions.SetTurretAction += DecreaseGold;
         Actions.EndGameAction += CheckIsHighScore;
+        Actions.SetTurretAction += DecreaseGold;
     }
 
     private void IncreaseScore(int scoreToEncrease, EnemyController instigator)
@@ -68,5 +68,10 @@ public class DataManager : MonoBehaviour
     private void LoadHighScore()
     {
         _highScore = PlayerPrefs.GetInt("HighScore", 0);
+    }
+
+    public int GetGold
+    {
+        get { return _gold; }
     }
 }

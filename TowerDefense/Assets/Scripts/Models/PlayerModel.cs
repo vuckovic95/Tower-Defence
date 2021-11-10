@@ -5,5 +5,6 @@ using UnityEngine;
 public class PlayerModel : MonoBehaviour
 {
     public float Health;
-    public float Damage;
+    public int Damage;
+    public float FireRate;
 }
