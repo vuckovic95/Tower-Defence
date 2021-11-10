@@ -74,4 +74,14 @@ public class DataManager : MonoBehaviour
     {
         get { return _gold; }
     }
+
+    public int GetScore
+    {
+        get { return _score; }
+    }
+
+    public int GetHighScore
+    {
+        get { return _highScore; }
+    }
 }

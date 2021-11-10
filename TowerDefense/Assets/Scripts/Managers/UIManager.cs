@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [Inject]
+    DataManager _dataManager;
+
     [BoxGroup("Panels")]
     [SerializeField]
     private GameObject _menuPanel;
@@ -24,6 +27,12 @@ public class UIManager : MonoBehaviour
     [BoxGroup("Text Fields")]
     [SerializeField]
     private TextMeshProUGUI _goldTxt;
+    [BoxGroup("Text Fields")]
+    [SerializeField]
+    private TextMeshProUGUI _scoreOnEndTxt;
+    [BoxGroup("Text Fields")]
+    [SerializeField]
+    private TextMeshProUGUI _highScoreOnEndTxt;
 
     [BoxGroup("Buttons")]
     [SerializeField]
@@ -49,7 +58,7 @@ public class UIManager : MonoBehaviour
         Actions.StartGameAction += ResetData;
         Actions.UpdateScore += UpdateScore;
         Actions.UpdateGold += UpdateGold;
-        Actions.EndGameAction += () => SwitchPanel("End");
+        Actions.EndGameAction += OnEndGame;
 
         _toMenuBtn.onClick.AddListener(ToMenuClicked);
         _playBtn.onClick.AddListener(PlayGameClicked);
@@ -112,6 +121,13 @@ public class UIManager : MonoBehaviour
     {
         SwitchPanel("Menu");
         Actions.ToMenuAction?.Invoke();
+    }
+
+    private void OnEndGame()
+    {
+        SwitchPanel("End");
+        _scoreOnEndTxt.text = "Score : " + _dataManager.GetScore.ToString();
+        _highScoreOnEndTxt.text = "High Score : " + _dataManager.GetHighScore.ToString();
     }
 
     private void ResetData()

@@ -45,6 +45,8 @@ public class TurretCreator : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Actions.BeginDragTurret?.Invoke();
+
         if (_dataManager.GetGold >= _price)
             GetTurret(_turretType);
         else
@@ -60,6 +62,8 @@ public class TurretCreator : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        Actions.EndDragTurret?.Invoke();
+
         if (_currentTurret == null) return;
 
         CheckHit(OnEndDragTrue, OnEndDragFalse);

@@ -1537,8 +1537,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203, y: -74}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 252.43585, y: -74}
+  m_SizeDelta: {x: 298.8717, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &416825927
 MonoBehaviour:
@@ -1685,6 +1685,8 @@ MonoBehaviour:
   _endPanel: {fileID: 649901076}
   _scoreTxt: {fileID: 416825927}
   _goldTxt: {fileID: 596198675}
+  _scoreOnEndTxt: {fileID: 563671613}
+  _highScoreOnEndTxt: {fileID: 1034912250}
   _playBtn: {fileID: 691415540}
   _tryAgainBtn: {fileID: 574184880}
   _toMenuBtn: {fileID: 1737331555}
@@ -2275,8 +2277,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -273, y: -74}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -226.55615, y: -74}
+  m_SizeDelta: {x: 292.8877, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &596198675
 MonoBehaviour:

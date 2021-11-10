@@ -20,6 +20,7 @@ public class SwipeManager : MonoBehaviour
     private Rigidbody _rigidbody;
 
     private Quaternion _rotationY;
+    private bool _canSwipe;
 
     private bool _touchSupported => UnityEngine.Input.touchSupported;
     private Touch? _fakeTouch => SimulateTouchWithMouse.Instance.FakeTouch;
@@ -39,11 +40,14 @@ public class SwipeManager : MonoBehaviour
     {
         Actions.ToMenuAction += ResetData;
         Actions.StartGameAction += ResetData;
+        Actions.BeginDragTurret += () => { _canSwipe = false; };
+        Actions.EndDragTurret += () => { _canSwipe = true; };
     }
 
     private void ResetData()
     {
         _turret.rotation = Quaternion.Euler(Vector3.zero);
+        _canSwipe = true;
     }
 
     public bool GetButton(string buttonName)
@@ -121,8 +125,8 @@ public class SwipeManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // if (PlayerController.Instance.canSwipe)
-        //{
+         if (States.GameStateReference is States.GameState.Play && _canSwipe)
+         {
 #if UNITY_ANDROID || UNITY_IOS
             if (Input.touchCount > 0)
             {
@@ -135,13 +139,13 @@ public class SwipeManager : MonoBehaviour
 
 #if UNITY_EDITOR
         //tr.Translate(Input.GetAxis("Horizontal") * 50 * Time.deltaTime, 0, 0);
-        if (touchCount > 0) 
-        { 
-            _rotationY = Quaternion.Euler(0f, touches[0].deltaPosition.x * _speed * Time.fixedDeltaTime, 0f);
-            _turret.rotation = _rotationY * _turret.transform.rotation;
-        }
+            if (touchCount > 0) 
+            { 
+                _rotationY = Quaternion.Euler(0f, touches[0].deltaPosition.x * _speed * Time.fixedDeltaTime, 0f);
+                _turret.rotation = _rotationY * _turret.transform.rotation;
+            }
 #endif
-        //}
+         }
     }
 }
 

@@ -16,4 +16,6 @@ public static class Actions
     public static Action<int> UpdateGold;
     public static Action IncreaseEnemiesAttributes;
     public static Action<EnemyController> EnemySpawnedAction;
+    public static Action BeginDragTurret;
+    public static Action EndDragTurret;
 }
