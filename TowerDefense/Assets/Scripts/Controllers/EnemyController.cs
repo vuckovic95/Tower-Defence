@@ -104,6 +104,20 @@ public class EnemyController : MonoBehaviour
         _health = _model.Health;
         _damage = _model.Damage;
         _pointsToGive = _model.PointsToGive;
+
+        _healthBar.fillAmount = 1;
+    }
+
+    private void UpdateHealth(float healthToDecrease)
+    {
+        _health -= healthToDecrease;
+        _healthBar.fillAmount = _health / 100;
+
+        if (_health <= 0)
+        {
+            this.gameObject.SetActive(false);
+            Actions.EnemyDestroyedAction?.Invoke(_pointsToGive, this);
+        }
     }
 
     public void SpawnEnemy()

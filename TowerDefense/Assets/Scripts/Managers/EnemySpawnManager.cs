@@ -42,12 +42,14 @@ public class EnemySpawnManager : MonoBehaviour
     private void SubscribeToActions()
     {
         Actions.StartGameAction += ResetProperties;
+        Actions.ToMenuAction += ResetProperties;
         Actions.StartGameAction += StartSpawning;
         Actions.EnemyDestroyedAction += CheckEnemies;
     }
 
     private void StartSpawning()
     {
+        //Svaki treci talas se broj neprijatelja povecava za 1
         _wavesCounter++;
         if(_wavesCounter % 3 == 0)
         {
@@ -57,9 +59,6 @@ public class EnemySpawnManager : MonoBehaviour
         }
 
         StartCoroutine(SpawnEnemies(_waitForNextEnemy, () => SpawnEnemy()));
-
-        //if(_enemies.Count <= _enemiesPerWaveHelper)
-        //todo
 
         if (!_hasFirstWave)
             _hasFirstWave = true;
@@ -133,6 +132,11 @@ public class EnemySpawnManager : MonoBehaviour
             yield return new WaitForSeconds(time);
             action?.Invoke();
         }      
+    }
+
+    public List<EnemyController> Enemies
+    {
+        get { return _enemies; }
     }
 
     public List<Transform> GetWaypoints

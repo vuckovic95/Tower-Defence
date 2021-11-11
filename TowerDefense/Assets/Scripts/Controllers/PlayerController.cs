@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private void SubscribeToActions()
     {
         Actions.StartGameAction += ResetPlayer;
+        Actions.ToMenuAction += ResetPlayer;
         Actions.ImpactAction += UpdateHealth;
     }  
 
