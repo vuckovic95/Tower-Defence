@@ -39,6 +39,10 @@ public class ManagerInstaller : MonoInstaller
     [SerializeField]
     private GameObject _projectileManager;
 
+    [BoxGroup("Installers")]
+    [SerializeField]
+    private GameObject _particleManager;
+
     public override void InstallBindings()
     {
         Container.Bind<GameManager>().FromComponentsOn(_gameManager).AsSingle();
@@ -48,5 +52,6 @@ public class ManagerInstaller : MonoInstaller
         Container.Bind<EnemySpawnManager>().FromComponentsOn(_enemySpawnManager).AsSingle();
         Container.Bind<GridManager>().FromComponentsOn(_gridManager).AsSingle();
         Container.Bind<ProjectileManager>().FromComponentsOn(_projectileManager).AsSingle();
+        Container.Bind<ParticleManager>().FromComponentsOn(_particleManager).AsSingle();
     }
 }

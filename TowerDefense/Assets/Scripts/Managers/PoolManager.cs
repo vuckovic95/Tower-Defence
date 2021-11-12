@@ -157,6 +157,15 @@ public class PoolManager : MonoBehaviour
         return tr.GetComponent<ParticleSystem>();
     }
 
+    public ParticleSystem GetDestroyEnemy()
+    {
+        Transform tr = GetObjectFromDictionary<Transform>("DestroyEnemy");
+        if (!tr)
+            return null;
+
+        return tr.GetComponent<ParticleSystem>();
+    }
+
     public Transform GetEnemy_1()
     {
         Transform tr = GetObjectFromDictionary<Transform>("Enemy_1");

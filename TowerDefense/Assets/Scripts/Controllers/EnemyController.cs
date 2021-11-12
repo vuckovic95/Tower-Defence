@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour
     [BoxGroup("Health")]
     [SerializeField]
     private Image _healthBar;
+    [BoxGroup("Destroy Effect")]
+    [SerializeField]
 
     private float _speed;
     private float _health;
@@ -78,9 +80,9 @@ public class EnemyController : MonoBehaviour
 
     private void IncreaseEnemyAttributes()
     {
-        _speed += _speed / 10;
-        _damage += _damage / 10;
-        _health += _health / 10;
+        _speed = _model.Speed + _model.Speed / 10;
+        _damage = _model.Damage + _model.Damage / 10;
+        _health = _model.Health + _model.Health / 10;
     }
 
     private void Die()
@@ -88,14 +90,6 @@ public class EnemyController : MonoBehaviour
         Actions.EnemyDestroyedAction?.Invoke(_pointsToGive, this);
         this.gameObject.SetActive(false);
         MMVibrationManager.Haptic(HapticTypes.LightImpact);
-    }
-
-    private void SetProperties()
-    {
-        this.gameObject.SetActive(true);
-        _pointIndex = 0;
-        _target =_waypoints[0];
-        _transform.position = _target.position;
     }
 
     private void ResetProperties()
@@ -120,13 +114,12 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void SpawnEnemy()
+    public void SpawnEnemy(List<Transform> waypoints)
     {
-        SetProperties();
-    }
-
-    public List<Transform> SetWaypoints
-    {
-        set { _waypoints = value; }
+        this.gameObject.SetActive(true);
+        _waypoints = waypoints;
+        _pointIndex = 0;
+        _target = _waypoints[0];
+        _transform.position = _target.position;
     }
 }

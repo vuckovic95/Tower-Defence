@@ -29,6 +29,8 @@ public class EnemySpawnManager : MonoBehaviour
     private int _wavesCounter;
     private int _enemiesPerWaveHelper;
 
+    private int WAVES_TO_INCREASE = 3;
+
     private void Awake()
     {
         PopulateWaypoints();
@@ -51,11 +53,10 @@ public class EnemySpawnManager : MonoBehaviour
     {
         //Svaki treci talas se broj neprijatelja povecava za 1
         _wavesCounter++;
-        if(_wavesCounter % 3 == 0)
+        if(_wavesCounter % WAVES_TO_INCREASE == 0)
         {
             _enemiesPerWaveHelper++; 
             Actions.IncreaseEnemiesAttributes?.Invoke();
-            _wavesCounter = 0;
         }
 
         StartCoroutine(SpawnEnemies(_waitForNextEnemy, () => SpawnEnemy()));
@@ -79,8 +80,7 @@ public class EnemySpawnManager : MonoBehaviour
 
         _enemies.Add(_currentEnemy);
         Actions.EnemySpawnedAction?.Invoke(_currentEnemy);
-        _currentEnemy.SetWaypoints = _waypoints;
-        _currentEnemy.SpawnEnemy();
+        _currentEnemy.SpawnEnemy(_waypoints);
     }
 
     private void PopulateWaypoints()
