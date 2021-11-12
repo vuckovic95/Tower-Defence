@@ -4,18 +4,10 @@ using UnityEngine;
 using Zenject;
 using NaughtyAttributes;
 using MoreMountains.NiceVibrations;
+using System;
 
 public class TurretController : MonoBehaviour
 {
-    [Inject]
-    EnemySpawnManager _enemySpawnManager;
-    [Inject]
-    PoolManager _poolManager;
-
-    [BoxGroup("Fire Bullet Position")]
-    [SerializeField]
-    private Transform _fireBulletPosition;
-
     [BoxGroup("Turret Parts")]
     [SerializeField]
     private GameObject _dome;
@@ -33,9 +25,8 @@ public class TurretController : MonoBehaviour
     [SerializeField]
     private Material _turretMaterialDragFalse;
 
-    [BoxGroup("Laser")]
-    [SerializeField]
-    private LineRenderer _laser;
+    private EnemySpawnManager _enemySpawnManager;
+    private ProjectileManager _projectileManager;
 
     private GameObject _nearestEnemy;
     private GameObject _projectileObject;
@@ -48,7 +39,7 @@ public class TurretController : MonoBehaviour
     private EnemyController _targetEnemy;
     private Projectile _projectile;
     private bool _hasUsed;
-    private bool _useLaser;
+    private bool _canFire;
     private List<Renderer> _renderers = new List<Renderer>();
 
     private float TURN_SPEED = 10f;
@@ -64,7 +55,7 @@ public class TurretController : MonoBehaviour
         _renderers.Add(_dome.GetComponent<Renderer>());
         _renderers.Add(_cannon.GetComponent<Renderer>());
 
-        Actions.StartGameAction += () => { _hasUsed = false; };
+        SubscribeToActions();
     }
 
     private void OnEnable()
@@ -74,33 +65,21 @@ public class TurretController : MonoBehaviour
 
     private void Update()
     {
-        if(_target == null)
-        {
-            if (_useLaser)
-            {
-                if (_laser.enabled)
-                {
-                    _laser.enabled = false;
-                }
-            }
-            return;
-        }
+        if(_target == null || !_canFire) return;
 
         LookAtTarget();
 
-        if (_useLaser)
+        if (_fireCountdown <= 0f)
         {
-            Laser();
+            Shoot();
+            _fireCountdown = _model.FireRange;
         }
-        else
-        {
-            if(_fireCountdown <= 0f)
-            {
-                Shoot();
-                _fireCountdown = 1f / _model.FireRange;
-            }
-            _fireCountdown -= Time.deltaTime;
-        }
+        _fireCountdown -= Time.deltaTime;
+    }
+
+    private void SubscribeToActions()
+    {
+        Actions.StartGameAction += () => { _hasUsed = false; };
     }
 
     private void UpdateTarget()
@@ -135,21 +114,10 @@ public class TurretController : MonoBehaviour
         _dome.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
-    private void Laser()
-    {
-        if (!_laser.enabled)
-        {
-            _laser.enabled = true;
-        }
-
-        _laser.SetPosition(0, _fireBulletPosition.position);
-        _laser.SetPosition(1, _target.position);
-    }
-
     private void Shoot()
     {
-        _projectileObject = _poolManager.GetProjectile().gameObject;
-        _projectileObject.transform.position = _fireBulletPosition.position;
+        _projectileObject = _projectileManager.GetProjectile().gameObject;
+        _projectileObject.transform.position = _cannon.transform.position;
 
         _projectile = _projectileObject.GetComponent<Projectile>();
 
@@ -169,12 +137,20 @@ public class TurretController : MonoBehaviour
 
     private void ResetTurret()
     {
+        StopAllCoroutines();
+        _canFire = false;
         _target = null;
         _projectileObject = null;
         _nearestEnemy = null;
         _targetEnemy = null;
         _projectile = null;
         _dome.transform.rotation = Quaternion.Euler(Vector3.zero);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _model.DistanceRange);
     }
 
     public void ChangeColorAndAlphaWhenDragging(bool canSet)
@@ -189,11 +165,25 @@ public class TurretController : MonoBehaviour
     {
         _transform.position = position;
         SetMaterial(_turretMaterial);
+
+        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+    }
+
+    public void SetManagers(ProjectileManager projectileManager, EnemySpawnManager enemySpawnManager)
+    {
+        _enemySpawnManager = enemySpawnManager;
+        _projectileManager = projectileManager;
     }
 
     public bool HasUsed
     {
         get { return _hasUsed; }
         set { _hasUsed = value; }
+    }
+
+    public bool CanFire
+    {
+        get { return _canFire; }
+        set { _canFire = value; }
     }
 }

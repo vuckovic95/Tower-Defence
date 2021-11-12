@@ -15,6 +15,10 @@ public class TurretCreator : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     GridManager _gridManager;
     [Inject]
     DataManager _dataManager;
+    [Inject]
+    EnemySpawnManager _enemySpawnManager;
+    [Inject]
+    ProjectileManager _projectileManager;
 
     [BoxGroup("Turret Type")]
     [SerializeField]
@@ -47,10 +51,10 @@ public class TurretCreator : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     {
         Actions.BeginDragTurret?.Invoke();
 
-        if (_dataManager.GetGold >= _price)
+        //if (_dataManager.GetGold >= _price)
             GetTurret(_turretType);
-        else
-            _currentTurret = null;
+        //else
+           // _currentTurret = null;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -103,6 +107,8 @@ public class TurretCreator : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
                 break;
         }
 
+        _currentTurret.SetManagers(_projectileManager, _enemySpawnManager);
+
         if (_currentTurret.HasUsed)
             GetTurret(type);
         else
@@ -134,6 +140,7 @@ public class TurretCreator : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
             _turrets.Add(_currentTurret.gameObject);
             SetTurretPosition(_hitedCell);
             _currentTurret.HasUsed = true;
+            _currentTurret.CanFire = true;
             _gridManager.GridDictionary[_hitedCell.gameObject] = true;
 
             Actions.SetTurretAction?.Invoke(_price);

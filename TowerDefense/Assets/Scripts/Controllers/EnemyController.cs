@@ -108,7 +108,7 @@ public class EnemyController : MonoBehaviour
         _healthBar.fillAmount = 1;
     }
 
-    private void UpdateHealth(float healthToDecrease)
+    public void TakeDamage(float healthToDecrease)
     {
         _health -= healthToDecrease;
         _healthBar.fillAmount = _health / 100;
@@ -118,14 +118,6 @@ public class EnemyController : MonoBehaviour
             this.gameObject.SetActive(false);
             Actions.EnemyDestroyedAction?.Invoke(_pointsToGive, this);
         }
-    }
-
-    public void TakeDamage(float damage)
-    {
-        _health -= damage;
-
-        if (_health < 0)
-            Die();
     }
 
     public void SpawnEnemy()

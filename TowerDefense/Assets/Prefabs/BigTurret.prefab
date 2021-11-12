@@ -179,9 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b6219ba0d434494084e75e5e8746623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 150
-  FireRange: 3
-  DistanceRange: 10
+  Damage: 200
+  FireRange: 2
+  DistanceRange: 6
 --- !u!114 &8822417421556616656
 MonoBehaviour:
   m_ObjectHideFlags: 0

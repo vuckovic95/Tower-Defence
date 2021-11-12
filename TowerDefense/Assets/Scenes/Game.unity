@@ -4572,7 +4572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waypointsParent: {fileID: 2108421575}
   _enemiesPerWave: 2
-  _waitForNextEnemy: 0.5
+  _waitForNextEnemy: 1
 --- !u!1 &1730663471
 GameObject:
   m_ObjectHideFlags: 0

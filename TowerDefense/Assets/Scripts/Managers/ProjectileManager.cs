@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using System;
+using Zenject;
 
 public class ProjectileManager : MonoBehaviour
 {
+    [Inject]
+    PoolManager _poolManager;
+
     private List<Transform> _projectiles = new List<Transform>();
+    private Transform _projectile;
 
     void Start()
     {
@@ -37,5 +42,13 @@ public class ProjectileManager : MonoBehaviour
         }
 
         _projectiles.Clear();
+    }
+
+    public Transform GetProjectile()
+    {
+        _projectile = _poolManager.GetProjectile();
+        _projectiles.Add(_projectile);
+
+        return _projectile;
     }
 }

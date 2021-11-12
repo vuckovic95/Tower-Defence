@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 200
-  Speed: 6
+  Speed: 2
   Damage: 20
   PointsToGive: 10
 --- !u!114 &7231917397747248665

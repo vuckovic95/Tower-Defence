@@ -264,7 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 50
   FireRange: 1
-  DistanceRange: 6
+  DistanceRange: 4
 --- !u!114 &6031450696891996556
 MonoBehaviour:
   m_ObjectHideFlags: 0
