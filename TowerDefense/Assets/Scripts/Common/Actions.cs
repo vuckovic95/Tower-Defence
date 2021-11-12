@@ -12,6 +12,7 @@ public static class Actions
     public static Action<int> SetTurretAction;
     public static Action<float> ImpactAction;
     public static Action<int, EnemyController> EnemyDestroyedAction;
+    public static Action<Projectile> ProjectileDestroyedAction;
     public static Action<int> UpdateScore;
     public static Action<int> UpdateGold;
     public static Action IncreaseEnemiesAttributes;

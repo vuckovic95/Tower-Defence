@@ -210,6 +210,15 @@ public class PoolManager : MonoBehaviour
 
         return tr;
     }
+
+    public Transform GetProjectile()
+    {
+        Transform tr = GetObjectFromDictionary<Transform>("Projectile");
+        if (!tr)
+            return null;
+
+        return tr;
+    }
     #endregion
 
     #region Getters And Setters

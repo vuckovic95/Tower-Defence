@@ -38,6 +38,7 @@ public class TurretController : MonoBehaviour
     private LineRenderer _laser;
 
     private GameObject _nearestEnemy;
+    private GameObject _projectileObject;
     private Transform _transform;
     private Transform _target;
     private TurretModel _model;
@@ -45,6 +46,7 @@ public class TurretController : MonoBehaviour
     private float _distanceToEnemy;
     private float _fireCountdown = 0f;
     private EnemyController _targetEnemy;
+    private Projectile _projectile;
     private bool _hasUsed;
     private bool _useLaser;
     private List<Renderer> _renderers = new List<Renderer>();
@@ -146,7 +148,15 @@ public class TurretController : MonoBehaviour
 
     private void Shoot()
     {
+        _projectileObject = _poolManager.GetProjectile().gameObject;
+        _projectileObject.transform.position = _fireBulletPosition.position;
 
+        _projectile = _projectileObject.GetComponent<Projectile>();
+
+        if(_projectile != null)
+        {
+            _projectile.Seek(_target, _model.Damage);
+        }
     }
 
     private void SetMaterial(Material material)
@@ -160,6 +170,10 @@ public class TurretController : MonoBehaviour
     private void ResetTurret()
     {
         _target = null;
+        _projectileObject = null;
+        _nearestEnemy = null;
+        _targetEnemy = null;
+        _projectile = null;
         _dome.transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
