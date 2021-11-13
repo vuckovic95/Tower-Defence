@@ -152,21 +152,21 @@ namespace MoreMountains.NiceVibrations
 		// And there starting v26, with support for amplitude :
 		// https://developer.android.com/reference/android/os/VibrationEffect.html
 
-		#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
 			private static AndroidJavaClass UnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
 			private static AndroidJavaObject CurrentActivity = UnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
 			private static AndroidJavaObject AndroidVibrator = CurrentActivity.Call<AndroidJavaObject>("getSystemService", "vibrator");
 			private static AndroidJavaClass VibrationEffectClass;
 			private static AndroidJavaObject VibrationEffect;
 			private static int DefaultAmplitude;
-		#else
+#else
 			private static AndroidJavaClass UnityPlayer;
 			private static AndroidJavaObject CurrentActivity;
 			private static AndroidJavaObject AndroidVibrator = null;
 			private static AndroidJavaClass VibrationEffectClass = null;
 			private static AndroidJavaObject VibrationEffect;
 			private static int DefaultAmplitude;
-		#endif
+#endif
 
 		/// <summary>
 		/// Requests a default vibration on Android, for the specified duration, in milliseconds
@@ -285,7 +285,7 @@ namespace MoreMountains.NiceVibrations
 		// It's a pretty straightforward implementation of iOS's UIFeedbackGenerator's methods.
 		// You can learn more about them there : https://developer.apple.com/documentation/uikit/uifeedbackgenerator
 
-		#if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR
 			[DllImport ("__Internal")]
 			private static extern void InstantiateFeedbackGenerators();
 			[DllImport ("__Internal")]
@@ -304,7 +304,7 @@ namespace MoreMountains.NiceVibrations
 			private static extern void MediumImpactHaptic();
 			[DllImport ("__Internal")]
 			private static extern void HeavyImpactHaptic();
-		#else
+#else
 			private static void InstantiateFeedbackGenerators() {}
 			private static void ReleaseFeedbackGenerators() {}
 			private static void SelectionHaptic() {}
@@ -314,7 +314,7 @@ namespace MoreMountains.NiceVibrations
 			private static void LightImpactHaptic() {}
 			private static void MediumImpactHaptic() {}
 			private static void HeavyImpactHaptic() {}
-		#endif
+#endif
 		private static bool iOSHapticsInitialized = false;
 
 		/// <summary>
@@ -389,11 +389,11 @@ namespace MoreMountains.NiceVibrations
 		/// <returns>The OSSDK version.</returns>
 		public static string iOSSDKVersion() 
 		{
-			#if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR
 				return Device.systemVersion;
-			#else
+#else
 				return null;
-			#endif
+#endif
 		}
 
 		// iOS End ----------------------------------------------------------------------------------------------------------------

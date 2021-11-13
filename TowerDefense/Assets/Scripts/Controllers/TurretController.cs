@@ -66,21 +66,24 @@ public class TurretController : MonoBehaviour
 
     private void Update()
     {
-        if(_target == null || !_canFire)
+        if(States.GameStateReference is States.GameState.Play)
         {
-            if(_hasUsed)
-                _dome.transform.Rotate(0, SELF_ROTATION_SPEED, 0, Space.Self);
-        }
-        else
-        {
-            LookAtTarget();
-
-            if (_fireCountdown <= 0f)
+            if (_target == null || !_canFire)
             {
-                Shoot();
-                _fireCountdown = _model.FireRange;
+                if (_hasUsed)
+                    _dome.transform.Rotate(0, SELF_ROTATION_SPEED, 0, Space.Self);
             }
-            _fireCountdown -= Time.deltaTime;
+            else
+            {
+                LookAtTarget();
+
+                if (_fireCountdown <= 0f)
+                {
+                    Shoot();
+                    _fireCountdown = _model.FireRange;
+                }
+                _fireCountdown -= Time.deltaTime;
+            }
         }
     }
 

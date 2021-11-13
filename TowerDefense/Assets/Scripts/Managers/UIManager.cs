@@ -59,6 +59,7 @@ public class UIManager : MonoBehaviour
         Actions.UpdateScore += UpdateScore;
         Actions.UpdateGold += UpdateGold;
         Actions.EndGameAction += OnEndGame;
+        Actions.HighScoreAction += SetHighScore;
 
         _toMenuBtn.onClick.AddListener(ToMenuClicked);
         _playBtn.onClick.AddListener(PlayGameClicked);
@@ -128,6 +129,11 @@ public class UIManager : MonoBehaviour
         SwitchPanel("End");
         _scoreOnEndTxt.text = "Score : " + _dataManager.GetScore.ToString();
         _highScoreOnEndTxt.text = "High Score : " + _dataManager.GetHighScore.ToString();
+    }
+
+    private void SetHighScore(int highscore)
+    {
+        _highScoreOnEndTxt.text = "High Score : " + highscore.ToString();
     }
 
     private void ResetData()

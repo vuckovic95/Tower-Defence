@@ -14,6 +14,7 @@ public static class Actions
     public static Action<int, EnemyController> EnemyDestroyedAction;
     public static Action<Projectile> ProjectileDestroyedAction;
     public static Action<PlayerProjectile> PlayerProjectileDestroyedAction;
+    public static Action<int> HighScoreAction;
     public static Action<int> UpdateScore;
     public static Action<int> UpdateGold;
     public static Action IncreaseEnemiesAttributes;

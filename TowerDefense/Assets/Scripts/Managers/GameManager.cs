@@ -4,9 +4,21 @@ using UnityEngine;
 using Zenject;
 using NaughtyAttributes;
 using MoreMountains.NiceVibrations;
+using System;
 
 public class GameManager : MonoBehaviour
 {
+    private void Awake()
+    {
+        SetAppSettings();
+    }
+
+    private void SetAppSettings()
+    {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+    }
+
     private void Start()
     {
         SubscribeToActions();

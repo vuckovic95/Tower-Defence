@@ -24,7 +24,7 @@ public class PlayerProjectile : MonoBehaviour, IProjectile
         _transform = this.transform;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (_object.activeSelf && States.GameStateReference is States.GameState.Play)
         {
@@ -34,7 +34,7 @@ public class PlayerProjectile : MonoBehaviour, IProjectile
 
     private void MoveForward()
     {
-        _transform.Translate(Vector3.forward.normalized * _speed * Time.deltaTime, Space.Self);
+        _transform.Translate(Vector3.forward.normalized * _speed * Time.fixedDeltaTime, Space.Self);
     }
 
     public void HitTarget()

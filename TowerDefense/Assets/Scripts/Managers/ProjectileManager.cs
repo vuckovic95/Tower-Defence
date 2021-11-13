@@ -62,6 +62,8 @@ public class ProjectileManager : MonoBehaviour
 
     private void ResetPlayerProjectiles()
     {
+        if (_playerProjectiles.Count <= 0) return;
+
         foreach (Transform projectile in _playerProjectiles)
         {
             projectile.gameObject.SetActive(false);
@@ -81,7 +83,7 @@ public class ProjectileManager : MonoBehaviour
     public Transform GetPlayerProjectile()
     {
         _playerProjectile = _poolManager.GetPlayerProjectile();
-        _playerProjectiles.Add(_projectile);
+        _playerProjectiles.Add(_playerProjectile);
 
         return _playerProjectile;
     }

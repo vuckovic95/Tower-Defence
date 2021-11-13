@@ -62,6 +62,7 @@ public class DataManager : MonoBehaviour
             _highScore = _score;
 
             PlayerPrefs.SetInt("HighScore", _highScore);
+            Actions.HighScoreAction?.Invoke(_highScore);
         }
     }
 

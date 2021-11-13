@@ -77,6 +77,8 @@ public class PlayerController : MonoBehaviour
         _healthImage.fillAmount = 1;
         _projectileObject = null;
         _projectile = null;
+
+        UpdateHealthBar(_health);
     }
 
     private void UpdateHealth(float healthToDecrease)

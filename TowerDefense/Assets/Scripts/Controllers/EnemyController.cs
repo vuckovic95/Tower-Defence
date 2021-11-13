@@ -12,9 +12,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Image _healthBar;
 
-    public float _speed;
-    public float _health;
-    public float _damage;
+    private float _speed;
+    private float _health;
+    private float _damage;
     private int _pointsToGive;
 
     private List<Transform> _waypoints = new List<Transform>();
