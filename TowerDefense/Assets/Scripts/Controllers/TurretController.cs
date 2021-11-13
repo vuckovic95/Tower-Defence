@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using NaughtyAttributes;
-using MoreMountains.NiceVibrations;
 using System;
 
 public class TurretController : MonoBehaviour

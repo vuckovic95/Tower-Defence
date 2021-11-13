@@ -137,7 +137,7 @@ public class SwipeManager : MonoBehaviour
 #endif
 
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN
         //tr.Translate(Input.GetAxis("Horizontal") * 50 * Time.deltaTime, 0, 0);
             if (touchCount > 0) 
             { 

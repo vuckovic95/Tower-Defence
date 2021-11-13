@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using NaughtyAttributes;
-using MoreMountains.NiceVibrations;
 using System;
 
 public class GameManager : MonoBehaviour
@@ -55,7 +54,6 @@ public class GameManager : MonoBehaviour
     private void EndGame()
     {
         SwitchGameState("End");
-        MMVibrationManager.Haptic(HapticTypes.Failure);
     }
 
     private void ToMenu()

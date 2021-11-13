@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using NaughtyAttributes;
-using MoreMountains.NiceVibrations;
 using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
@@ -68,7 +67,6 @@ public class EnemyController : MonoBehaviour
     {
         Actions.ImpactAction?.Invoke(_damage);      
         Die();
-        MMVibrationManager.Haptic(HapticTypes.LightImpact);
     }
 
     private void IncreaseEnemyAttributes()

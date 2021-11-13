@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
 using NaughtyAttributes;
-using MoreMountains.NiceVibrations;
 using System;
 
 public class TurretCreator : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler
