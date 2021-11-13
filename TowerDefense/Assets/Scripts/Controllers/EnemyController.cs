@@ -117,6 +117,10 @@ public class EnemyController : MonoBehaviour
 
     public void SpawnEnemy(List<Transform> waypoints)
     {
+        _healthBar.color = Color.green;
+        _healthBar.fillAmount = 1;
+        UpdateHealthBar(_health);
+
         this.gameObject.SetActive(true);
         _waypoints = waypoints;
         _pointIndex = 0;
