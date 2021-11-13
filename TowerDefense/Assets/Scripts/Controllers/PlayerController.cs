@@ -7,11 +7,20 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [Inject]
+    ProjectileManager _projectileManager;
+
     [BoxGroup("Health")]
     [SerializeField]
     private Image _healthImage;
 
+    [BoxGroup("Fire Point")]
+    [SerializeField]
+    private Transform _firePoint;
+
     private PlayerModel _model;
+    private GameObject _projectileObject;
+    private PlayerProjectile _projectile;
     private float _health;
     private float _fireCountdown = 0f;
     private bool _canFire;
@@ -31,9 +40,9 @@ public class PlayerController : MonoBehaviour
                 {
                     Fire();                   
                     _fireCountdown = _model.FireRate;
-                }
-                _fireCountdown -= Time.deltaTime;
+                }              
             }
+            _fireCountdown -= Time.deltaTime;
         }
     }
 
@@ -49,13 +58,25 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
-        Debug.Log("Fire");
+        _projectileObject = _projectileManager.GetPlayerProjectile().gameObject;
+        _projectileObject.transform.position = _firePoint.position;
+        _projectileObject.transform.rotation = _firePoint.transform.rotation;
+        _projectileObject.SetActive(true);
+
+        _projectile = _projectileObject.GetComponent<PlayerProjectile>();
+
+        if (_projectile != null)
+        {
+            _projectile.Seek(null, _model.Damage);
+        }
     }
 
     private void ResetPlayer()
     {
         _health = _model.Health;
         _healthImage.fillAmount = 1;
+        _projectileObject = null;
+        _projectile = null;
     }
 
     private void UpdateHealth(float healthToDecrease)

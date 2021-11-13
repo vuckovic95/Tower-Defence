@@ -9,6 +9,9 @@ public class Projectile : MonoBehaviour, IProjectile
     [BoxGroup("Speed")]
     [SerializeField]
     private float _speed;
+    [BoxGroup("Trail")]
+    [SerializeField]
+    private GameObject _trail;
 
     private Transform _transform;
     private Transform _target;
@@ -50,11 +53,13 @@ public class Projectile : MonoBehaviour, IProjectile
         if (enemy != null)
             enemy.TakeDamage(_damage);
 
+        _trail.SetActive(false);
         Actions.ProjectileDestroyedAction?.Invoke(this);
     }
 
     public void TurnOff()
     {
+        _trail.SetActive(false);
         Actions.ProjectileDestroyedAction?.Invoke(this);
     }
 
@@ -62,6 +67,7 @@ public class Projectile : MonoBehaviour, IProjectile
     {
         _target = target;
         _damage = damage;
+        _trail.SetActive(true);
     }
 
     public void ResetProjectileData()

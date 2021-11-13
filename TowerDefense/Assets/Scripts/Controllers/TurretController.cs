@@ -43,6 +43,7 @@ public class TurretController : MonoBehaviour
     private List<Renderer> _renderers = new List<Renderer>();
 
     private float TURN_SPEED = 10f;
+    private float SELF_ROTATION_SPEED = 0.2f;
 
     private void Start()                  
     {
@@ -65,16 +66,22 @@ public class TurretController : MonoBehaviour
 
     private void Update()
     {
-        if(_target == null || !_canFire) return;
-
-        LookAtTarget();
-
-        if (_fireCountdown <= 0f)
+        if(_target == null || !_canFire)
         {
-            Shoot();
-            _fireCountdown = _model.FireRange;
+            if(_hasUsed)
+                _dome.transform.Rotate(0, SELF_ROTATION_SPEED, 0, Space.Self);
         }
-        _fireCountdown -= Time.deltaTime;
+        else
+        {
+            LookAtTarget();
+
+            if (_fireCountdown <= 0f)
+            {
+                Shoot();
+                _fireCountdown = _model.FireRange;
+            }
+            _fireCountdown -= Time.deltaTime;
+        }
     }
 
     private void SubscribeToActions()

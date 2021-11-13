@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 38571749}
   m_Layer: 0
   m_Name: Boundarie
-  m_TagString: Untagged
+  m_TagString: Boundarie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,8 +276,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38571747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.63, y: 0, z: -73.8}
-  m_LocalScale: {x: 116.31476, y: 3.3777, z: 1}
+  m_LocalPosition: {x: 6.63, y: 4.1, z: -73.8}
+  m_LocalScale: {x: 116.31476, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 1220124540}
   m_RootOrder: 0
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 40449258}
   m_Layer: 0
   m_Name: Boundarie
-  m_TagString: Untagged
+  m_TagString: Boundarie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -372,8 +372,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40449256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.63, y: 0, z: 82.8}
-  m_LocalScale: {x: 120.107796, y: 3.3777, z: 1}
+  m_LocalPosition: {x: 6.63, y: 4.1, z: 82.8}
+  m_LocalScale: {x: 120.107796, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 1220124540}
   m_RootOrder: 1
@@ -1227,7 +1227,6 @@ GameObject:
   m_Component:
   - component: {fileID: 327635717}
   - component: {fileID: 327635720}
-  - component: {fileID: 327635719}
   - component: {fileID: 327635718}
   m_Layer: 0
   m_Name: SpawnTower (1)
@@ -1292,19 +1291,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &327635719
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327635716}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &327635720
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1782,7 +1768,7 @@ GameObject:
   - component: {fileID: 568992108}
   m_Layer: 0
   m_Name: Boundarie
-  m_TagString: Untagged
+  m_TagString: Boundarie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1795,8 +1781,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568992106}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 65, y: 0, z: 4.7}
-  m_LocalScale: {x: 172.0993, y: 3.3777, z: 1}
+  m_LocalPosition: {x: 65, y: 4.1, z: 4.7}
+  m_LocalScale: {x: 172.0993, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 1220124540}
   m_RootOrder: 3
@@ -3358,7 +3344,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 40 Gold
+  m_text: 60 Gold
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f663e2bc6478847bcb3701d656813bc7, type: 2}
   m_sharedMaterial: {fileID: 8426759977266313960, guid: f663e2bc6478847bcb3701d656813bc7, type: 2}
@@ -4654,7 +4640,11 @@ MonoBehaviour:
     TypeOf: Transform
   - Name: Projectile
     Prefab: {fileID: 393546557685079122, guid: 3420fb38ab14ebe449878f701c317378, type: 3}
-    PoolSize: 200
+    PoolSize: 150
+    TypeOf: Transform
+  - Name: PlayerProjectile
+    Prefab: {fileID: 5890554213352862479, guid: 384feeb21af28e148aee1ec25c46d0bb, type: 3}
+    PoolSize: 5
     TypeOf: Transform
   - Name: DestroyEnemy
     Prefab: {fileID: 8525983849919076638, guid: fb9ae900db3283e43972fa30bd8eae9b, type: 3}
@@ -5242,7 +5232,7 @@ GameObject:
   - component: {fileID: 1779813383}
   m_Layer: 0
   m_Name: Boundarie
-  m_TagString: Untagged
+  m_TagString: Boundarie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5255,8 +5245,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1779813381}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -51.4, y: 0, z: 4.7}
-  m_LocalScale: {x: 172.0993, y: 3.3777, z: 1}
+  m_LocalPosition: {x: -51.4, y: 4.1, z: 4.7}
+  m_LocalScale: {x: 172.0993, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 1220124540}
   m_RootOrder: 2
@@ -5946,7 +5936,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 80 Gold
+  m_text: 100 Gold
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f663e2bc6478847bcb3701d656813bc7, type: 2}
   m_sharedMaterial: {fileID: 8426759977266313960, guid: f663e2bc6478847bcb3701d656813bc7, type: 2}
@@ -6033,7 +6023,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2017045082}
   - component: {fileID: 2017045081}
-  - component: {fileID: 2017045080}
   - component: {fileID: 2017045079}
   m_Layer: 0
   m_Name: SpawnTower
@@ -6084,19 +6073,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2017045080
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2017045078}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &2017045081
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16031,13 +16007,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5686739168785429333, guid: c9db9520bb873004fbbc57b593e87b13, type: 3}
-      propertyPath: Damage
-      value: 200
+    - target: {fileID: 5686739167640321018, guid: c9db9520bb873004fbbc57b593e87b13, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.552
       objectReference: {fileID: 0}
-    - target: {fileID: 5686739168785429333, guid: c9db9520bb873004fbbc57b593e87b13, type: 3}
-      propertyPath: FireRate
-      value: 2
+    - target: {fileID: 5686739167640321018, guid: c9db9520bb873004fbbc57b593e87b13, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.451
+      objectReference: {fileID: 0}
+    - target: {fileID: 5686739167640321018, guid: c9db9520bb873004fbbc57b593e87b13, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.863
       objectReference: {fileID: 0}
     - target: {fileID: 5686739168785429334, guid: c9db9520bb873004fbbc57b593e87b13, type: 3}
       propertyPath: m_RootOrder

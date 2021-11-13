@@ -26,6 +26,10 @@ public class ProjectileManager : MonoBehaviour
         Actions.StartGameAction += ResetProjectiles;
         Actions.ToMenuAction += ResetProjectiles;
         Actions.ProjectileDestroyedAction += RemoveProjectile;
+
+        Actions.StartGameAction += ResetPlayerProjectiles;
+        Actions.ToMenuAction += ResetPlayerProjectiles;
+        Actions.PlayerProjectileDestroyedAction += RemovePlayerProjectile;
     }
 
     private void RemoveProjectile(Projectile projectile)
@@ -76,7 +80,7 @@ public class ProjectileManager : MonoBehaviour
 
     public Transform GetPlayerProjectile()
     {
-        _playerProjectile = _poolManager.GetProjectile();
+        _playerProjectile = _poolManager.GetPlayerProjectile();
         _playerProjectiles.Add(_projectile);
 
         return _playerProjectile;
