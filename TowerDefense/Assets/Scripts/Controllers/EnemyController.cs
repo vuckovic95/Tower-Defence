@@ -11,12 +11,10 @@ public class EnemyController : MonoBehaviour
     [BoxGroup("Health")]
     [SerializeField]
     private Image _healthBar;
-    [BoxGroup("Destroy Effect")]
-    [SerializeField]
 
-    private float _speed;
-    private float _health;
-    private float _damage;
+    public float _speed;
+    public float _health;
+    public float _damage;
     private int _pointsToGive;
 
     private List<Transform> _waypoints = new List<Transform>();
@@ -30,14 +28,8 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         _transform = this.transform;
-    }
-
-    private void Start()
-    {
-        SubscribeToActions();
-
         _model = GetComponent<EnemyModel>();
-        _transform = this.transform;
+        SubscribeToActions();
         ResetProperties();
     }
 
@@ -76,6 +68,7 @@ public class EnemyController : MonoBehaviour
     {
         Actions.ImpactAction?.Invoke(_damage);      
         Die();
+        MMVibrationManager.Haptic(HapticTypes.LightImpact);
     }
 
     private void IncreaseEnemyAttributes()
@@ -88,8 +81,7 @@ public class EnemyController : MonoBehaviour
     private void Die()
     {
         Actions.EnemyDestroyedAction?.Invoke(_pointsToGive, this);
-        this.gameObject.SetActive(false);
-        MMVibrationManager.Haptic(HapticTypes.LightImpact);
+        this.gameObject.SetActive(false);      
     }
 
     private void ResetProperties()
@@ -99,18 +91,29 @@ public class EnemyController : MonoBehaviour
         _damage = _model.Damage;
         _pointsToGive = _model.PointsToGive;
 
+        _healthBar.color = Color.green;
         _healthBar.fillAmount = 1;
+    }
+
+    private void UpdateHealthBar(float health)
+    {
+        if (health >= 80)
+            _healthBar.color = Color.green;
+        else if (health < 80 && health > 30)
+            _healthBar.color = new Color(255, 165, 0);
+        else if (health < 30)
+            _healthBar.color = Color.red;
     }
 
     public void TakeDamage(float healthToDecrease)
     {
         _health -= healthToDecrease;
         _healthBar.fillAmount = _health / 100;
+        UpdateHealthBar(_health);
 
         if (_health <= 0)
         {
-            this.gameObject.SetActive(false);
-            Actions.EnemyDestroyedAction?.Invoke(_pointsToGive, this);
+            Die();
         }
     }
 

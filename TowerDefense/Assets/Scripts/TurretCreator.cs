@@ -7,7 +7,7 @@ using NaughtyAttributes;
 using MoreMountains.NiceVibrations;
 using System;
 
-public class TurretCreator : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
+public class TurretCreator : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler
 {
     [Inject]
     PoolManager _poolManager;
@@ -47,10 +47,13 @@ public class TurretCreator : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
         Actions.StartGameAction += ResetData;
         Actions.ToMenuAction += ResetData;
     }
-    public void OnBeginDrag(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
         Actions.BeginDragTurret?.Invoke();
+    }
 
+    public void OnBeginDrag(PointerEventData eventData)
+    {
         //if (_dataManager.GetGold >= _price)
             GetTurret(_turretType);
         //else

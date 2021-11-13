@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2321047390368865045}
   - component: {fileID: 9144954521459273495}
   - component: {fileID: 8839117341282792976}
+  - component: {fileID: 8481647461279797275}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -96,3 +97,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 50
+--- !u!65 &8481647461279797275
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393546557685079122}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

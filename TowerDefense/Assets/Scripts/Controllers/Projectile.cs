@@ -4,7 +4,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using System;
 
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour, IProjectile
 {
     [BoxGroup("Speed")]
     [SerializeField]
@@ -43,7 +43,7 @@ public class Projectile : MonoBehaviour
         _transform.LookAt(_target);
     }
 
-    private void HitTarget()
+    public void HitTarget()
     {
         EnemyController enemy = _target.GetComponent<EnemyController>();
 
@@ -53,7 +53,7 @@ public class Projectile : MonoBehaviour
         Actions.ProjectileDestroyedAction?.Invoke(this);
     }
 
-    private void TurnOff()
+    public void TurnOff()
     {
         Actions.ProjectileDestroyedAction?.Invoke(this);
     }

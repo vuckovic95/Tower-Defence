@@ -162,13 +162,13 @@ GameObject:
   - component: {fileID: 7231917397747248664}
   - component: {fileID: 7231917397747248667}
   - component: {fileID: 7231917397747248666}
-  - component: {fileID: 7231917397747248669}
+  - component: {fileID: 7007271623240241195}
   - component: {fileID: 7231917397747247591}
   - component: {fileID: 7231917397747247590}
   - component: {fileID: 7231917397747248665}
   m_Layer: 0
   m_Name: Enemy_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,8 +238,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7231917397747248669
-SphereCollider:
+--- !u!65 &7007271623240241195
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -249,8 +249,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 3.9077795, z: 1}
+  m_Center: {x: 0, y: 1.4352175, z: 0}
 --- !u!54 &7231917397747247591
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -296,7 +296,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 7231917397718592449}
-  _destroyEffect: {fileID: 0}
+  _speed: 0
+  _health: 0
+  _damage: 0
 --- !u!1 &7231917398688988969
 GameObject:
   m_ObjectHideFlags: 0

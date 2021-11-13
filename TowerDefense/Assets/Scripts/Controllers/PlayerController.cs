@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     private PlayerModel _model;
     private float _health;
+    private float _fireCountdown = 0f;
+    private bool _canFire;
 
     private void Start()
     {
@@ -21,15 +23,34 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-
+        if (_canFire && States.GameStateReference is States.GameState.Play)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                if (_fireCountdown <= 0f)
+                {
+                    Fire();                   
+                    _fireCountdown = _model.FireRate;
+                }
+                _fireCountdown -= Time.deltaTime;
+            }
+        }
     }
 
     private void SubscribeToActions()
     {
         Actions.StartGameAction += ResetPlayer;
         Actions.ToMenuAction += ResetPlayer;
+        Actions.StartGameAction += () => { _canFire = true; };
         Actions.ImpactAction += UpdateHealth;
+        Actions.BeginDragTurret += () => { _canFire = false; };
+        Actions.EndDragTurret += () => { _canFire = true; };
     }  
+
+    private void Fire()
+    {
+        Debug.Log("Fire");
+    }
 
     private void ResetPlayer()
     {
@@ -41,8 +62,19 @@ public class PlayerController : MonoBehaviour
     {
         _health -= healthToDecrease;
         _healthImage.fillAmount = _health / 100;
+        UpdateHealthBar(_health);
 
         if (_health <= 0)
             Actions.EndGameAction?.Invoke();
+    }
+
+    private void UpdateHealthBar(float health)
+    {
+        if (health >= 80)
+            _healthImage.color = Color.green;
+        else if (health < 80 && health > 30)
+            _healthImage.color = new Color(255, 165, 0);
+        else if (health < 30)
+            _healthImage.color = Color.red;
     }
 }
