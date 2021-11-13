@@ -53,10 +53,10 @@ public class TurretCreator : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //if (_dataManager.GetGold >= _price)
+        if (_dataManager.GetGold >= _price)
             GetTurret(_turretType);
-        //else
-            //_currentTurret = null;
+        else
+            _currentTurret = null;
     }
 
     public void OnDrag(PointerEventData eventData)
